@@ -5,7 +5,12 @@
   align-items: center;
 }
 
-#title {
+#welcomeTitle {
+  font-size: 5em;
+  text-align: center;
+}
+
+#gameTitle {
   font-size: 5em;
   text-align: center;
 }
