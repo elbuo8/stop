@@ -1,0 +1,24 @@
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#title {
+  font-size: 5em;
+  text-align: center;
+}
+
+.form {
+  margin-top: 15vh;
+}
+
+.label {
+  padding-left: 40px;
+  padding-right: 10px;
+}
+
+.label2 {
+  padding-left: 100px;
+}
