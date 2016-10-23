@@ -11,7 +11,12 @@
 }
 
 #gameTitle {
-  font-size: 5em;
+  font-size: 4em;
+  text-align: center;
+}
+
+#resultsTitle {
+  font-size: 4em;
   text-align: center;
 }
 

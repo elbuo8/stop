@@ -29,7 +29,7 @@
 
   <div id="gameView" hidden>
     <div class="form">
-      <h2 id="gameTitle">Letra: 'a'</h2>
+      <h2 id="gameTitle">Seleccionando la letra...</h2>
 
       <form>
         <label class="label">Nombre</label>
@@ -58,7 +58,7 @@
         <br />
 
         <label class="label2">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
-        <button id='submitGame' class="pure-button pure-button-primary">Done!</button>
+        <button id='submitGame' class="pure-button pure-button-primary pure-button-disabled" disabled>Done!</button>
       </form>
     </div>
   </div>
@@ -71,7 +71,6 @@
     </ul>
   </div>
   <script>
-    window.onload = function() {
       var messages = []
       var data
       var room
@@ -79,26 +78,25 @@
 
       var game = io('http://localhost:3000')
 
-      game.on('connect', function(socket) {
-        console.log(socket)
-      })
-
       game.on('new player', function (data) {
         console.log('new player')
         $('#playerList').append('<li>'+data.name+'</li>')
       })
 
       game.on('start game', function (data) {
-        var counter = 45
-        window.setInterval(function () {
-          document.getElementById('gameTitle').innerHTML = 'Letra: \'' + data.letter + '\' Time: ' + counter + 's'
-          console.log(counter)
-          counter--
-          if (counter === 0) {
-            window.clearInterval(this)
-            game.emit('end')
-          }
-        }, 1000)
+        document.getElementById('gameTitle').innerHTML = 'Letra: \'' + data.letter + '\'';
+
+        $('#submitGame').attr('disabled', false)
+        // var counter = 45
+        // window.setInterval(function () {
+        //   document.getElementById('gameTitle').innerHTML = 'Letra: \'' + data.letter + '\' Time: ' + counter + 's'
+        //   console.log(counter)
+        //   counter--
+        //   if (counter === 0) {
+        //     window.clearInterval(this)
+        //     game.emit('end')
+        //   }
+        // }, 1000)
       })
 
       game.on('send data', function () {
@@ -120,15 +118,16 @@
         })
       })
 
-      game.on('player left', function () {
-
-      })
+      // game.on('player left', function () {
+      //
+      // })
 
       game.on('results', function (results) {
         $('#gameView').attr('hidden', true)
 
         for (var i = 0; i < results.length; i++) {
-          $('#resultsList').append('<li>Player: '+results[i].player+' Score: '+results[i].score+'</li>')
+          console.log(results[i])
+          $('#resultsList').append('<li>Player: '+results[i].name+' Score: '+results[i].score+'</li>')
         }
 
         $('#resultsView').attr('hidden', false)
@@ -143,7 +142,25 @@
           if (status === 'OK') {
             console.log('joined game')
             $('#welcomeView').attr('hidden', true)
+
+
+            //testing
+
+            // var counter = 45
+            // window.setInterval(function () {
+            //   var data = { letter : 'C'}
+            //   document.getElementById('gameTitle').innerHTML = 'Letra: \'' + data.letter + '\' Time: ' + counter + 's'
+            //   console.log(counter)
+            //   counter--
+            //   if (counter === 0) {
+            //     window.clearInterval(this)
+            //     game.emit('end')
+            //   }
+            // }, 1000)
+
             $('#gameView').attr('hidden', false)
+
+            //testing
 
           } else if (status === 'ERROR') {
             alert('There was an error')
@@ -167,9 +184,8 @@
           pais: $('#pais').val()
         }
 
-        socket.emit('end')
+        game.emit('end')
       })
-    }
 
   </script>
 </div>

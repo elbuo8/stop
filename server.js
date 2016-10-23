@@ -19,6 +19,10 @@ app.get('/', function(req, res) {
   return res.render('home');
 });
 
+app.get('/:view', function(req, res) {
+  return res.render(req.params.view);
+});
+
 io.on('connection', socketManager);
 
 server.listen(3000, function() {
