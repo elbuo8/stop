@@ -21,4 +21,6 @@ app.get('/', function(req, res) {
 
 io.on('connection', socketManager);
 
-server.listen(3000);
+server.listen(3000, function() {
+  console.log('listening on port 3000')
+});

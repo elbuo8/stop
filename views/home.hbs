@@ -83,7 +83,7 @@
         console.log(socket)
       })
 
-      game.on('new_player', function (data) {
+      game.on('new player', function (data) {
         console.log('new player')
         $('#playerList').append('<li>'+data.name+'</li>')
       })
@@ -146,7 +146,7 @@
             $('#gameView').attr('hidden', false)
 
           } else if (status === 'ERROR') {
-
+            alert('There was an error')
           }
         })
       })
