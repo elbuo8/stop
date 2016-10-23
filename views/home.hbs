@@ -60,7 +60,10 @@
         <label class="label2">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
         <button id='submitGame' class="pure-button pure-button-primary pure-button-disabled" disabled>Done!</button>
       </form>
+      <ul id="playerList" >
+      </ul>
     </div>
+
   </div>
 
   <!-- RESULTS -->
@@ -76,27 +79,22 @@
       var room
       var name
 
-      var game = io('http://localhost:3000')
+      var game = io('http://b5e41409.ngrok.io')
 
       game.on('new player', function (data) {
         console.log('new player')
+        console.log(data)
         $('#playerList').append('<li>'+data.name+'</li>')
       })
 
       game.on('start game', function (data) {
         document.getElementById('gameTitle').innerHTML = 'Letra: \'' + data.letter + '\'';
-
         $('#submitGame').attr('disabled', false)
-        // var counter = 45
-        // window.setInterval(function () {
-        //   document.getElementById('gameTitle').innerHTML = 'Letra: \'' + data.letter + '\' Time: ' + counter + 's'
-        //   console.log(counter)
-        //   counter--
-        //   if (counter === 0) {
-        //     window.clearInterval(this)
-        //     game.emit('end')
-        //   }
-        // }, 1000)
+        $('#submitGame').removeClass('pure-button-disabled')
+
+        game.on('update timer', function(seconds) {
+          document.getElementById('gameTitle').innerHTML = 'Letra: \'' + data.letter + '\'' + ' Time left: ' + seconds;
+        });
       })
 
       game.on('send data', function () {
@@ -118,20 +116,13 @@
         })
       })
 
-      // game.on('player left', function () {
-      //
-      // })
-
       game.on('results', function (results) {
         $('#gameView').attr('hidden', true)
-
         for (var i = 0; i < results.length; i++) {
           console.log(results[i])
           $('#resultsList').append('<li>Player: '+results[i].name+' Score: '+results[i].score+'</li>')
         }
-
         $('#resultsView').attr('hidden', false)
-
       })
 
       $('#joinGame').click(function(e) {

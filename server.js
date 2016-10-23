@@ -15,12 +15,10 @@ var socketManager = require('./lib/socketManager')({ db: db, io: io });
 app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
+app.get('/favico.ico' , function(req , res){ res.status(200).end()});
+
 app.get('/', function(req, res) {
   return res.render('home');
-});
-
-app.get('/:view', function(req, res) {
-  return res.render(req.params.view);
 });
 
 io.on('connection', socketManager);
