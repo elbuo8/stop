@@ -13,9 +13,9 @@
     });
 
     //socket.emit('start', {letter: 'a'});
+    //socket.emit('end');
     socket.on('start game', function() {
       console.log(1);
-      socket.emit('end');
 
       socket.on('send data', function() {
 
