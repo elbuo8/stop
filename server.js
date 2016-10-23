@@ -8,13 +8,15 @@ var server = http.Server(app);
 var io = socketio(server);
 var db = {};
 
+app.use(express.static('public'));
+
 var socketManager = require('./lib/socketManager')({ db: db, io: io });
 
 app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
-app.get('/:view', function(req, res) {
-  return res.render(req.params.view || 'home');
+app.get('/', function(req, res) {
+  return res.render('home');
 });
 
 io.on('connection', socketManager);

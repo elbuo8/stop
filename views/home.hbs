@@ -1,29 +1,4 @@
 <div class='container'>
-    <div class="form">
-      <h2 id="title">Letter: 'a'</h2>
-
-      <form>
-        <label class="label">Nombre</label>
-        <input type="text" />
-        <br />
-        <br />
-
-        <label class="label">Apellido</label>
-        <input type="text"/>
-        <br />
-        <br />
-
-        <label class="label">Pet&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
-        <input type="text" />
-        <br />
-        <br />
-
-        <label class="label">Yolo&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
-        <input type="text"/>
-        <br />
-        <br />
-        <label class="label2">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
-        <button id='startGame' class="pure-button pure-button-primary">Done!</button>
   <div class="form">
     <div id="initialView">
       <h2 id="title">STOP!</h2>
@@ -35,13 +10,38 @@
         <button id='joinGame' class="pure-button pure-button-primary">Start</button>
       </form>
     </div>
+  </div>
     <div id="secondaryView" hidden>
-      <h2>Game has started</h2>
+      <div class="form">
+        <h2 id="title">Letter: 'a'</h2>
+
+        <form>
+          <label class="label">Nombre</label>
+          <input type="text" />
+          <br />
+          <br />
+
+          <label class="label">Apellido</label>
+          <input type="text"/>
+          <br />
+          <br />
+
+          <label class="label">Pet&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
+          <input type="text" />
+          <br />
+          <br />
+
+          <label class="label">Yolo&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
+          <input type="text"/>
+          <br />
+          <br />
+          <label class="label2">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
+          <button id='startGame' class="pure-button pure-button-primary">Done!</button>
+        </div>
     </div>
     <div id="finalView" hidden>
       <h2>Game has finished</h2>
     </div>
-  </div>
   <script>
     window.onload = function() {
       var messages = [];
@@ -57,10 +57,6 @@
       // var room = $('#room').val()
       // var socket = io.connect('http://localhost:3000')
       // socket.emit('join', { name: name, room: room })
-
-<script>
-
-</script>
       $('#initialView').attr('hidden', true)
 
       $('#secondaryView').attr('hidden', false)
